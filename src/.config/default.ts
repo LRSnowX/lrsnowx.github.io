@@ -5,16 +5,16 @@ import type { ThemeConfig } from '~/types'
 
 export const defaultConfig: ThemeConfig = {
   site: {
-    title: '活版印字',
+    title: '分布式代码',
     subtitle: 'Typography',
-    author: 'Moeyua',
-    description: 'Rediscory the beauty of typography',
-    website: 'https://astro-theme-typography.vercel.app/',
+    author: 'LR.Snow',
+    description: '记录我的无聊生活',
+    website: 'https://distributed.codes/',
     pageSize: 5,
     socialLinks: [
       {
         name: 'github',
-        href: 'https://github.com/moeyua/astro-theme-typography',
+        href: 'https://github.com/lrsnowx',
       },
       {
         name: 'rss',
@@ -22,11 +22,7 @@ export const defaultConfig: ThemeConfig = {
       },
       {
         name: 'twitter',
-        href: 'https://github.com/moeyua/astro-theme-typography',
-      },
-      {
-        name: 'mastodon',
-        href: 'https://github.com/moeyua/astro-theme-typography',
+        href: 'https://x.com/lrsnowx',
       },
     ],
     navLinks: [
@@ -47,7 +43,7 @@ export const defaultConfig: ThemeConfig = {
         href: '/about',
       },
     ],
-    categoryMap: [{ name: '胡适', path: 'hu-shi' }],
+    categoryMap: [{ name: '生活', path: 'sheng-huo' }],
     footer: [
       '© %year <a target="_blank" href="%website">%author</a>',
       'Theme <a target="_blank" href="https://github.com/Moeyua/astro-theme-typography">Typography</a> by <a target="_blank" href="https://moeyua.com">Moeyua</a>',
@@ -72,7 +68,7 @@ export const defaultConfig: ThemeConfig = {
     },
   },
   seo: {
-    twitter: '@moeyua13',
+    twitter: '@lrsnowx',
     meta: [],
     link: [],
   },
@@ -80,7 +76,20 @@ export const defaultConfig: ThemeConfig = {
     fullText: true,
   },
   comment: {
-    // disqus: { shortname: "typography-astro" },
+    giscus: {
+      repo: 'lrsnowx/lrsnowx.github.io',
+      repoId: 'R_kgDOLqrttA',
+      category: 'General',
+      categoryId: 'DIC_kwDOLqrttM4Cef6d',
+      mapping: 'og:title',
+      strict: '0',
+      reactionsEnabled: '1',
+      emitMetadata: '1',
+      inputPosition: 'top',
+      theme: 'light_protanopia',
+      lang: 'zh-CN',
+      loading: 'lazy',
+    },
   },
   analytics: {
     googleAnalyticsId: '',
