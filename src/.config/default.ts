@@ -6,7 +6,7 @@ import type { ThemeConfig } from '~/types'
 export const defaultConfig: ThemeConfig = {
   site: {
     title: '分布式代码',
-    subtitle: 'Typography',
+    subtitle: 'Distributed.Codes',
     author: 'LR.Snow',
     description: '记录我的无聊生活',
     website: 'https://distributed.codes/',
