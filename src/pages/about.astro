@@ -1,8 +1,8 @@
 ---
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { getEntry, render } from 'astro:content'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { formatDate } from '~/utils'
+
 const { translate: t } = Astro.locals
 const aboutPost = await getEntry('spec', 'about')
 if (!aboutPost) {

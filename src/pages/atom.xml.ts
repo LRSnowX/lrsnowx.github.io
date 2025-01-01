@@ -3,6 +3,7 @@ import type { Post } from '~/types'
 import rss from '@astrojs/rss'
 import MarkdownIt from 'markdown-it'
 import sanitizeHtml from 'sanitize-html'
+import { themeConfig } from '~/.config'
 import { getPosts } from '~/utils'
 
 const parser = new MarkdownIt()
