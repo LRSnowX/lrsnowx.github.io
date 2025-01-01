@@ -7,10 +7,10 @@ import {
   presetUno,
   transformerVariantGroup,
 } from 'unocss'
-// import presetTheme from 'unocss-preset-theme'
+import presetTheme from 'unocss-preset-theme'
 import { themeConfig } from './src/.config'
 
-const { colorsLight, fonts } = themeConfig.appearance
+const { colorsDark, colorsLight, fonts } = themeConfig.appearance
 
 const cssExtend = {
   ':root': {
@@ -58,14 +58,14 @@ export default defineConfig({
     presetTypography({ cssExtend }),
     presetAttributify(),
     presetIcons({ scale: 1.2, warn: true }),
-    // presetTheme ({
-    //   theme: {
-    //     dark: {
-    //       colors: { ...colorsDark, shadow: '#FFFFFF0A' },
-    //       // TODO 需要配置代码块颜色
-    //     },
-    //   },
-    // }),
+    presetTheme ({
+      theme: {
+        dark: {
+          colors: { ...colorsDark, shadow: '#FFFFFF0A' },
+          // TODO 需要配置代码块颜色
+        },
+      },
+    }),
   ],
   theme: {
     colors: { ...colorsLight, shadow: '#0000000A' },
