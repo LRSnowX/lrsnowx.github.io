@@ -3,6 +3,7 @@
   pubDate: 2024-06-19
   categories: []
   description: '折腾了一下Stable Diffusion,发现还挺有意思……'
+  slug: AI
 ---
 
 昨天晚上没事干，因为最近没什么事情，光顾着玩游戏了，也没开电脑，就想着看看电脑上Homebrew、pip、npm什么的是不是需要更新一下，就打开电脑折腾了一会。折腾完发现好久之前装了个MochiDiffussion，就刚装上的时候玩了一会，因为MochiDiffusion需要coreml专门的模型，之前大佬共享的模型也好久没更新了，就一直放着没有玩了。

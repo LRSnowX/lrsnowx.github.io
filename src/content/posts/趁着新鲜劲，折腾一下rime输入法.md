@@ -3,6 +3,7 @@ title: 趁着新鲜劲，折腾一下rime输入法
 pubDate: 2024-04-07 16:24:23
 categories: [生活]
 description: '记录一下Mac下输入法的使用历程以及这次折腾rime输入法的步骤……'
+slug: 输入法
 ---
 
 不知不觉用Mac差不多十四五年了，从刚开始用不惯原生输入法，而去安装搜狗输入法，一直到现在使用Mac系统自带的输入法，中间其实也没少折腾，今天中午没事干就准备顺便折腾一下Rime输入法，刚好也在撑着新鲜劲在blog上记录一下。
@@ -60,13 +61,13 @@ patch:
   # inline_ascii 无输入时，切换中英；有输入时，切换到临时英文模式，按回车上屏后回到中文状态
   # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
   ascii_composer:
-    good_old_caps_lock: true  # true | false
+    good_old_caps_lock: true # true | false
     switch_key:
-      Caps_Lock: commit_code   # commit_code | commit_text | clear
-      Shift_L: noop    # commit_code | commit_text | inline_ascii | clear | noop
-      Shift_R: noop    # commit_code | commit_text | inline_ascii | clear | noop
-      Control_L: noop          # commit_code | commit_text | inline_ascii | clear | noop
-      Control_R: noop          # commit_code | commit_text | inline_ascii | clear | noop
+      Caps_Lock: commit_code # commit_code | commit_text | clear
+      Shift_L: noop # commit_code | commit_text | inline_ascii | clear | noop
+      Shift_R: noop # commit_code | commit_text | inline_ascii | clear | noop
+      Control_L: noop # commit_code | commit_text | inline_ascii | clear | noop
+      Control_R: noop # commit_code | commit_text | inline_ascii | clear | noop
 ```
 
 这个配置文件主要是将默认启用的双拼删除，只保留全拼（schema：rime_ice）,然后中英文切换与macOS系统自带输入法相同，使用CapsLock键（这里需要说明一下，其实我并不喜欢使用CapsLock键进行中英文切换，主要是这次买的Mac是在PDD百亿补贴买的，键盘不能定制成美式键盘，买回来用了半年多已近习惯使用CapsLock切换了，就暂时这样吧，毕竟键盘上写的也是“中/英”么），后续有时间好好研究一下在对这个切换中英文输入法的设置再重新弄一下。
@@ -81,9 +82,9 @@ patch:
   speller:
     # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
     alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
-    delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
+    delimiter: " '" # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
     algebra:
-      ### 模糊音
+      # ## 模糊音
       # 声母
       # - derive/^([zcs])h/$1/          # z c s → zh ch sh
       # - derive/^([zcs])([^h])/$1h$2/  # zh ch sh → z c s
@@ -98,10 +99,10 @@ patch:
       # 韵母
       # - derive/ang/an/
       # - derive/an/ang/
-      - derive/eng/en/  # en → eng
-      - derive/en/eng/  # eng → en
-      - derive/in/ing/  # ing → in
-      - derive/ing/in/  # in → ing
+      - derive/eng/en/ # en → eng
+      - derive/en/eng/ # eng → en
+      - derive/in/ing/ # ing → in
+      - derive/ing/in/ # in → ing
       # - derive/ian/iang/
       # - derive/iang/ian/
       # - derive/uan/uang/
@@ -122,38 +123,38 @@ patch:
       # - derive/^fu$/hu/
       # - derive/^wang$/huang/
       # - derive/^huang$/wang/
-  
-      ### 旧时的拼写规则
+
+      # ## 旧时的拼写规则
       # - derive/un$/uen/
       # - derive/ui$/uei/
       # - derive/iu$/iou/
-  
-      ### 超级简拼
+
+      # ## 超级简拼
       - erase/^hm$/ # 响应超级简拼，取消「噷 hm」的独占
-      - erase/^m$/  # 响应超级简拼，取消「呣 m」的独占
-      - erase/^n$/  # 响应超级简拼，取消「嗯 n」的独占
+      - erase/^m$/ # 响应超级简拼，取消「呣 m」的独占
+      - erase/^n$/ # 响应超级简拼，取消「嗯 n」的独占
       - erase/^ng$/ # 响应超级简拼，取消「嗯 ng」的独占
-      - abbrev/^([a-z]).+$/$1/   # 超级简拼
-      - abbrev/^([zcs]h).+$/$1/  # 超级简拼中，zh ch sh 视为整体（ch'sh → 城市），而不是像这样分开（c'h's'h → 吃好睡好）。
-  
-      ### v u 转换，增加对词库中「nue/nve」「qu/qv」等不同注音的支持
+      - abbrev/^([a-z]).+$/$1/ # 超级简拼
+      - abbrev/^([zcs]h).+$/$1/ # 超级简拼中，zh ch sh 视为整体（ch'sh → 城市），而不是像这样分开（c'h's'h → 吃好睡好）。
+
+      # ## v u 转换，增加对词库中「nue/nve」「qu/qv」等不同注音的支持
       - derive/^([nl])ue$/$1ve/
       - derive/^([nl])ve$/$1ue/
       - derive/^([jqxy])u/$1v/
       - derive/^([jqxy])v/$1u/
-  
-      ### 可输入大写字母，做了 xlit 转写是为了适配双拼
+
+      # ## 可输入大写字母，做了 xlit 转写是为了适配双拼
       - xlit/āḃçďēḟḡĥīĵḱĺḿńōṕɋŕśťūṽẃẋȳź/ABCDEFGHIJKLMNOPQRSTUVWXYZ/
-  
-      ### 自动纠错
+
+      # ## 自动纠错
       # 有些规则对全拼简拼混输有副作用：如「x'ai 喜爱」被纠错为「xia 下」
       # zh、ch、sh
-      - derive/([zcs])h(a|e|i|u|ai|ei|an|en|ou|uo|ua|un|ui|uan|uai|uang|ang|eng|ong)$/h$1$2/  # hzi → zhi
-      - derive/([zcs])h([aeiu])$/$1$2h/  # zih → zhi
+      - derive/([zcs])h(a|e|i|u|ai|ei|an|en|ou|uo|ua|un|ui|uan|uai|uang|ang|eng|ong)$/h$1$2/ # hzi → zhi
+      - derive/([zcs])h([aeiu])$/$1$2h/ # zih → zhi
       # ai
-      - derive/^([wghk])ai$/$1ia/  # wia → wai
+      - derive/^([wghk])ai$/$1ia/ # wia → wai
       # ia
-      - derive/([qjx])ia$/$1ai/  # qai → qia
+      - derive/([qjx])ia$/$1ai/ # qai → qia
       # ei
       - derive/([wtfghkz])ei$/$1ie/
       # ie
@@ -235,174 +236,174 @@ patch:
 
 patch:
   style:
-    color_scheme: macos_light       # 将皮肤名称输入在此处
-    color_scheme_dark: macos_dark   # 暗色模式下的皮肤名称
+    color_scheme: macos_light # 将皮肤名称输入在此处
+    color_scheme_dark: macos_dark # 暗色模式下的皮肤名称
 
   # 皮肤列表
   preset_color_schemes:
     macos_light:
-      name: "MacOS 浅色／MacOS Light"
+      name: MacOS 浅色／MacOS Light
       author: 小码哥
-      font_face: "PingFangSC"          # 字体及大小
+      font_face: PingFangSC # 字体及大小
       font_point: 16
-      label_font_face: "PingFangSC"    # 序号字体及大小
+      label_font_face: PingFangSC # 序号字体及大小
       label_font_point: 12
-      comment_font_face: "PingFangSC"  # 注字体及大小
+      comment_font_face: PingFangSC # 注字体及大小
       comment_font_point: 16
       candidate_format: "%c\u2005%@\u2005" # 编号 %c 和候选词 %@ 前后的空间
-      candidate_list_layout: linear   # 候选排布：层叠 stacked | 行 linear
-      text_orientation: horizontal    # 行文向： 横 horizontal | 纵 vertical
-      inline_preedit: true            # 拼音位于： 候选框 false | 行内 true
-      translucency: false             # 磨砂： false | true
-      mutual_exclusive: false         # 色不叠加： false | true
-      border_height: 1                # 外边框 高
-      border_width: 1                 # 外边框 宽
-      corner_radius: 5                # 外边框 圆角半径
-      hilited_corner_radius: 5       # 选中框 圆角半径
+      candidate_list_layout: linear # 候选排布：层叠 stacked | 行 linear
+      text_orientation: horizontal # 行文向： 横 horizontal | 纵 vertical
+      inline_preedit: true # 拼音位于： 候选框 false | 行内 true
+      translucency: false # 磨砂： false | true
+      mutual_exclusive: false # 色不叠加： false | true
+      border_height: 1 # 外边框 高
+      border_width: 1 # 外边框 宽
+      corner_radius: 5 # 外边框 圆角半径
+      hilited_corner_radius: 5 # 选中框 圆角半径
       surrounding_extra_expansion: 0 # 候选项背景相对大小？
-      shadow_size: 0                 # 阴影大小
-      line_spacing: 5                # 行间距
-      base_offset: 0                 # 字基高
-      alpha: 1                       # 透明度，0~1
-      spacing: 10                    # 拼音与候选项之间的距离 （inline_preedit: false）
-      color_space: srgb                       # 色彩空间： srgb | display_p3
-      back_color: 0xFFFFFF                    # 底色
-      hilited_candidate_back_color: 0xD75A00  # 选中底色
-      label_color: 0x999999                   # 序号颜色
+      shadow_size: 0 # 阴影大小
+      line_spacing: 5 # 行间距
+      base_offset: 0 # 字基高
+      alpha: 1 # 透明度，0~1
+      spacing: 10 # 拼音与候选项之间的距离 （inline_preedit: false）
+      color_space: srgb # 色彩空间： srgb | display_p3
+      back_color: 0xFFFFFF # 底色
+      hilited_candidate_back_color: 0xD75A00 # 选中底色
+      label_color: 0x999999 # 序号颜色
       hilited_candidate_label_color: 0xFFFFFF # 选中序号颜色
-      candidate_text_color: 0x3c3c3c          # 文字颜色
-      hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
-      comment_text_color: 0x999999            # 注颜色
-      hilited_comment_text_color: 0xFFFFFF    # 选中注颜色
-      text_color: 0x424242                    # 拼音颜色 （inline_preedit: false）
-      hilited_text_color: 0xFFFFFF            # 选中拼音颜色 （inline_preedit: false）
-      candidate_back_color: 0xe9e9ea          # 候选项底色
+      candidate_text_color: 0x3c3c3c # 文字颜色
+      hilited_candidate_text_color: 0xFFFFFF # 选中文字颜色
+      comment_text_color: 0x999999 # 注颜色
+      hilited_comment_text_color: 0xFFFFFF # 选中注颜色
+      text_color: 0x424242 # 拼音颜色 （inline_preedit: false）
+      hilited_text_color: 0xFFFFFF # 选中拼音颜色 （inline_preedit: false）
+      candidate_back_color: 0xe9e9ea # 候选项底色
       # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
-      hilited_back_color: 0xD75A00            # 选中拼音底色 （inline_preedit: false）
-      border_color: 0xFFFFFF                  # 外边框颜色
+      hilited_back_color: 0xD75A00 # 选中拼音底色 （inline_preedit: false）
+      border_color: 0xFFFFFF # 外边框颜色
 
     macos_dark:
-      name: "MacOS 深色／MacOS Dark"
+      name: MacOS 深色／MacOS Dark
       author: 小码哥
-      font_face: "PingFangSC"          # 字体及大小
+      font_face: PingFangSC # 字体及大小
       font_point: 16
-      label_font_face: "PingFangSC"    # 序号字体及大小
+      label_font_face: PingFangSC # 序号字体及大小
       label_font_point: 12
-      comment_font_face: "PingFangSC"  # 注字体及大小
+      comment_font_face: PingFangSC # 注字体及大小
       comment_font_point: 16
       candidate_format: "%c\u2005%@\u2005" # 编号 %c 和候选词 %@ 前后的空间
-      candidate_list_layout: linear   # 候选排布：层叠 stacked | 行 linear
-      text_orientation: horizontal    # 行文向： 横 horizontal | 纵 vertical
-      inline_preedit: true            # 拼音位于： 候选框 false | 行内 true
-      translucency: false             # 磨砂： false | true
-      mutual_exclusive: false         # 色不叠加： false | true
-      border_height: 1                # 外边框 高
-      border_width: 1                 # 外边框 宽
-      corner_radius: 5                # 外边框 圆角半径
-      hilited_corner_radius: 5       # 选中框 圆角半径
+      candidate_list_layout: linear # 候选排布：层叠 stacked | 行 linear
+      text_orientation: horizontal # 行文向： 横 horizontal | 纵 vertical
+      inline_preedit: true # 拼音位于： 候选框 false | 行内 true
+      translucency: false # 磨砂： false | true
+      mutual_exclusive: false # 色不叠加： false | true
+      border_height: 1 # 外边框 高
+      border_width: 1 # 外边框 宽
+      corner_radius: 5 # 外边框 圆角半径
+      hilited_corner_radius: 5 # 选中框 圆角半径
       surrounding_extra_expansion: 0 # 候选项背景相对大小？
-      shadow_size: 0                 # 阴影大小
-      line_spacing: 5                # 行间距
-      base_offset: 0                 # 字基高
-      alpha: 1                       # 透明度，0~1
-      spacing: 10                    # 拼音与候选项之间的距离 （inline_preedit: false）
-      color_space: srgb                       # 色彩空间： srgb | display_p3
-      back_color: 0x1f1e2d                  # 底色
-      hilited_candidate_back_color: 0xD75A00  # 选中底色
-      label_color: 0x999999                   # 序号颜色
+      shadow_size: 0 # 阴影大小
+      line_spacing: 5 # 行间距
+      base_offset: 0 # 字基高
+      alpha: 1 # 透明度，0~1
+      spacing: 10 # 拼音与候选项之间的距离 （inline_preedit: false）
+      color_space: srgb # 色彩空间： srgb | display_p3
+      back_color: 0x1f1e2d # 底色
+      hilited_candidate_back_color: 0xD75A00 # 选中底色
+      label_color: 0x999999 # 序号颜色
       hilited_candidate_label_color: 0xFFFFFF # 选中序号颜色
-      candidate_text_color: 0xe9e9ea          # 文字颜色
-      hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
-      comment_text_color: 0x999999            # 注颜色
-      hilited_comment_text_color: 0x999999    # 选中注颜色
-      text_color: 0x808080                    # 拼音颜色 （inline_preedit: false）
-      hilited_text_color: 0xFFFFFF            # 选中拼音颜色 （inline_preedit: false）
-      candidate_back_color: 0xe9e9ea          # 候选项底色
+      candidate_text_color: 0xe9e9ea # 文字颜色
+      hilited_candidate_text_color: 0xFFFFFF # 选中文字颜色
+      comment_text_color: 0x999999 # 注颜色
+      hilited_comment_text_color: 0x999999 # 选中注颜色
+      text_color: 0x808080 # 拼音颜色 （inline_preedit: false）
+      hilited_text_color: 0xFFFFFF # 选中拼音颜色 （inline_preedit: false）
+      candidate_back_color: 0xe9e9ea # 候选项底色
       # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
-      hilited_back_color: 0xD75A00            # 选中拼音底色 （inline_preedit: false）
-      border_color: 0x050505                  # 外边框颜色
+      hilited_back_color: 0xD75A00 # 选中拼音底色 （inline_preedit: false）
+      border_color: 0x050505 # 外边框颜色
 
     wechat_light:
-      name: "微信浅色／Wechat Light"
+      name: 微信浅色／Wechat Light
       author: 小码哥
-      font_face: "PingFangSC"          # 字体及大小
+      font_face: PingFangSC # 字体及大小
       font_point: 16
-      label_font_face: "PingFangSC"    # 序号字体及大小
+      label_font_face: PingFangSC # 序号字体及大小
       label_font_point: 13
-      comment_font_face: "PingFangSC"  # 注字体及大小
+      comment_font_face: PingFangSC # 注字体及大小
       comment_font_point: 16
       candidate_format: "%c\u2005%@\u2005" # 编号 %c 和候选词 %@ 前后的空间
-      candidate_list_layout: linear   # 候选排布：层叠 stacked | 行 linear
-      text_orientation: horizontal    # 行文向： 横 horizontal | 纵 vertical
-      inline_preedit: true            # 拼音位于： 候选框 false | 行内 true
-      translucency: false             # 磨砂： false | true
-      mutual_exclusive: false         # 色不叠加： false | true
-      border_height: 1                # 外边框 高
-      border_width: 1                 # 外边框 宽
-      corner_radius: 5                # 外边框 圆角半径
-      hilited_corner_radius: 5       # 选中框 圆角半径
+      candidate_list_layout: linear # 候选排布：层叠 stacked | 行 linear
+      text_orientation: horizontal # 行文向： 横 horizontal | 纵 vertical
+      inline_preedit: true # 拼音位于： 候选框 false | 行内 true
+      translucency: false # 磨砂： false | true
+      mutual_exclusive: false # 色不叠加： false | true
+      border_height: 1 # 外边框 高
+      border_width: 1 # 外边框 宽
+      corner_radius: 5 # 外边框 圆角半径
+      hilited_corner_radius: 5 # 选中框 圆角半径
       surrounding_extra_expansion: 0 # 候选项背景相对大小？
-      shadow_size: 0                 # 阴影大小
-      line_spacing: 5                # 行间距
-      base_offset: 0                 # 字基高
-      alpha: 1                       # 透明度，0~1
-      spacing: 10                    # 拼音与候选项之间的距离 （inline_preedit: false）
-      color_space: srgb                       # 色彩空间： srgb | display_p3
-      back_color: 0xFFFFFF                    # 底色
-      hilited_candidate_back_color: 0x79af22  # 选中底色
-      label_color: 0x999999                   # 序号颜色
+      shadow_size: 0 # 阴影大小
+      line_spacing: 5 # 行间距
+      base_offset: 0 # 字基高
+      alpha: 1 # 透明度，0~1
+      spacing: 10 # 拼音与候选项之间的距离 （inline_preedit: false）
+      color_space: srgb # 色彩空间： srgb | display_p3
+      back_color: 0xFFFFFF # 底色
+      hilited_candidate_back_color: 0x79af22 # 选中底色
+      label_color: 0x999999 # 序号颜色
       hilited_candidate_label_color: 0xFFFFFF # 选中序号颜色
-      candidate_text_color: 0x3c3c3c          # 文字颜色
-      hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
-      comment_text_color: 0x999999            # 注颜色
-      hilited_comment_text_color: 0x999999    # 选中注颜色
-      text_color: 0x424242                    # 拼音颜色 （inline_preedit: false）
-      hilited_text_color: 0x999999            # 选中拼音颜色 （inline_preedit: false）
-      candidate_back_color: 0xe9e9ea          # 候选项底色
+      candidate_text_color: 0x3c3c3c # 文字颜色
+      hilited_candidate_text_color: 0xFFFFFF # 选中文字颜色
+      comment_text_color: 0x999999 # 注颜色
+      hilited_comment_text_color: 0x999999 # 选中注颜色
+      text_color: 0x424242 # 拼音颜色 （inline_preedit: false）
+      hilited_text_color: 0x999999 # 选中拼音颜色 （inline_preedit: false）
+      candidate_back_color: 0xe9e9ea # 候选项底色
       # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
-      hilited_back_color: 0x79af22            # 选中拼音底色 （inline_preedit: false）
-      border_color: 0xFFFFFF                  # 外边框颜色
+      hilited_back_color: 0x79af22 # 选中拼音底色 （inline_preedit: false）
+      border_color: 0xFFFFFF # 外边框颜色
 
     wechat_dark:
-      name: "微信深色／Wechat Dark"
+      name: 微信深色／Wechat Dark
       author: 小码哥
-      font_face: "PingFangSC"          # 字体及大小
+      font_face: PingFangSC # 字体及大小
       font_point: 16
-      label_font_face: "PingFangSC"    # 序号字体及大小
+      label_font_face: PingFangSC # 序号字体及大小
       label_font_point: 13
-      comment_font_face: "PingFangSC"  # 注字体及大小
+      comment_font_face: PingFangSC # 注字体及大小
       comment_font_point: 16
       candidate_format: "%c\u2005%@\u2005" # 编号 %c 和候选词 %@ 前后的空间
-      candidate_list_layout: linear   # 候选排布：层叠 stacked | 行 linear
-      text_orientation: horizontal    # 行文向： 横 horizontal | 纵 vertical
-      inline_preedit: true            # 拼音位于： 候选框 false | 行内 true
-      translucency: false             # 磨砂： false | true
-      mutual_exclusive: false         # 色不叠加： false | true
-      border_height: 1                # 外边框 高
-      border_width: 1                 # 外边框 宽
-      corner_radius: 5                # 外边框 圆角半径
-      hilited_corner_radius: 5       # 选中框 圆角半径
+      candidate_list_layout: linear # 候选排布：层叠 stacked | 行 linear
+      text_orientation: horizontal # 行文向： 横 horizontal | 纵 vertical
+      inline_preedit: true # 拼音位于： 候选框 false | 行内 true
+      translucency: false # 磨砂： false | true
+      mutual_exclusive: false # 色不叠加： false | true
+      border_height: 1 # 外边框 高
+      border_width: 1 # 外边框 宽
+      corner_radius: 5 # 外边框 圆角半径
+      hilited_corner_radius: 5 # 选中框 圆角半径
       surrounding_extra_expansion: 0 # 候选项背景相对大小？
-      shadow_size: 0                 # 阴影大小
-      line_spacing: 5                # 行间距
-      base_offset: 0                 # 字基高
-      alpha: 1                       # 透明度，0~1
-      spacing: 10                    # 拼音与候选项之间的距离 （inline_preedit: false）
-      color_space: srgb                       # 色彩空间： srgb | display_p3
-      back_color: 0x151515                    # 底色
-      hilited_candidate_back_color: 0x79af22  # 选中底色
-      label_color: 0x999999                   # 序号颜色
+      shadow_size: 0 # 阴影大小
+      line_spacing: 5 # 行间距
+      base_offset: 0 # 字基高
+      alpha: 1 # 透明度，0~1
+      spacing: 10 # 拼音与候选项之间的距离 （inline_preedit: false）
+      color_space: srgb # 色彩空间： srgb | display_p3
+      back_color: 0x151515 # 底色
+      hilited_candidate_back_color: 0x79af22 # 选中底色
+      label_color: 0x999999 # 序号颜色
       hilited_candidate_label_color: 0xFFFFFF # 选中序号颜色
-      candidate_text_color: 0xbbbbbb          # 文字颜色
-      hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
-      comment_text_color: 0x999999            # 注颜色
-      hilited_comment_text_color: 0xFFFFFF    # 选中注颜色
-      text_color: 0xbbbbbb                    # 拼音颜色 （inline_preedit: false）
-      hilited_text_color: 0x999999            # 选中拼音颜色 （inline_preedit: false）
-      candidate_back_color: 0xbbbbbb          # 候选项底色
+      candidate_text_color: 0xbbbbbb # 文字颜色
+      hilited_candidate_text_color: 0xFFFFFF # 选中文字颜色
+      comment_text_color: 0x999999 # 注颜色
+      hilited_comment_text_color: 0xFFFFFF # 选中注颜色
+      text_color: 0xbbbbbb # 拼音颜色 （inline_preedit: false）
+      hilited_text_color: 0x999999 # 选中拼音颜色 （inline_preedit: false）
+      candidate_back_color: 0xbbbbbb # 候选项底色
       # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
-      hilited_back_color: 0x79af22            # 选中拼音底色 （inline_preedit: false）
-      border_color: 0x292929                  # 外边框颜色      
+      hilited_back_color: 0x79af22 # 选中拼音底色 （inline_preedit: false）
+      border_color: 0x292929 # 外边框颜色
 ```
 
 上面的配置文件里还有wechat_light和wechat_dark两个主题，我没有试好不好看好不好用，就先放着后面在折腾吧，反正我也没用过微信输入法，怕被腾讯卖了🤣
@@ -425,7 +426,6 @@ chmod +x ~/.sleep
 
 ```yaml
 #!/usr/bin/env bash
-
 # 触发鼠须管同步用户数据
 /Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --sync
 ```
@@ -439,14 +439,18 @@ brew services restart sleepwatcher
 当然上面的只是在休眠的时候同步，要设置唤醒的时候同步还需要设置一个~/.wakeup文件，参考上面设置就好。
 
 最后还有配置更新部分，这部分我没有试，所以就直接复制BaiYun大神写的内容就好了：
+
 > 前面我们用的预设配置是 雾凇拼音 这个项目提供的，后续可以通过下面的命令更新配置以获得新功能和 Bugfix。
 > 更新雾凇拼音：所有配置和词库（更新前建议先备份 ~/Library/Rime 目录，更新后所有非 .custom.yaml 结尾的配置文件会被覆盖）
+>
 > ```shell
 > # 先回到 plum 安装目录，如果你将 plum 安装在了其他目录，这里需要修改
 > cd ~/plum
 > bash rime-install iDvel/rime-ice:others/recipes/full
 > ```
+>
 > 更新雾凇拼音：所有词库文件
+>
 > ```shell
 > cd ~/plum
 > bash rime-install iDvel/rime-ice:others/recipes/all_dicts

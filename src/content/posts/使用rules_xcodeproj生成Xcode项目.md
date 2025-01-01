@@ -3,6 +3,7 @@ title: 使用rules_xcodeproj生成Xcode项目
 pubDate: 2024-04-20 00:50:23
 categories: [编程]
 description: '因为在网上没有找到中文版的rules_xcodeproj使用教程，自己就折腾了一下午，趁着还没忘，记录一下使用rules_xcodeproj生成Xcode项目的步骤……'
+slug: Xcode
 ---
 
 今天在刷B站的时候看到了B站官方写的一个博客，是介绍B站在使用Bazel开发iOS应用时的探索，瞬间就勾起了我的兴趣，虽然我知道切换到Bazel对我的那个小app基本没什么提升，说不定在使用Bazel的时候遇到的坑会更多，毕竟我对Bazel的了解也就是今天看的这些文档，基本就是0基础，但是谁让我喜欢折腾呢。为了防止过一阵子之后就忘了我现在是怎么做的，现在就记录一下使用rules_xcodeproj生成Xcode项目的步骤。
@@ -37,6 +38,7 @@ open -a Xcode MODULE.bazel
 ```
 
 为了方便我们生成Xcode项目，我们可以在外部依赖中设置rules_xcodeproj以及建立Xcode项目所需的其他几个外部依赖项，在我写这篇博客的时候这些版本号都是最新的，过段时间再用的话就得根据实际情况进行调整了。
+
 ```python
 bazel_dep(name = "rules_xcodeproj", version = "2.2.0")
 
@@ -65,10 +67,12 @@ bazel_dep(
 ```
 
 然后我们需要创建BUILD文件，和上面一样用Xcode打开进行编辑用于告知Bazel项目的结构。
+
 ```shell
 touch BUILD
 open -a Xcode BUILD
 ```
+
 ```python
 # 首先是添加应用目标，这里我是用来构建iOS应用，所以使用的是ios_application，要给macOS写应用的话就换成macos_application。
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application", "ios_unit_test",)
@@ -148,41 +152,41 @@ open -a Xcode Resources/Info.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UILaunchScreen</key>
-		<dict/>
-	</dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-</dict>
+  <dict>
+    <key>UILaunchScreen</key>
+    <dict>
+      <key>UILaunchScreen</key>
+      <dict />
+    </dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true />
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+      <string>armv7</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+  </dict>
 </plist>
 ```
 
@@ -192,6 +196,7 @@ open -a Xcode Resources/Info.plist
 mkdir Sources
 Sources/my-appApp.swift
 ```
+
 ```swift
 import SwiftUI
 
@@ -206,6 +211,7 @@ struct my-appApp: App {
 ```
 
 好了，到这里我们所有的准备工作就做完了，接下来我们来使用rules_xcodeproj来Xcode项目文件
+
 ```shell
 bazel run //:xcodeproj
 ```
