@@ -115,7 +115,7 @@ And then add the corresponding page in `src/pages`, see more in [Astro Pages](ht
 Typography supports dark mode. You can change it in the config file:
 
 ```ts
-themeStyle: 'dark' // 'light' | 'dark'
+themeStyle: 'dark' // 'light' | 'dark' | 'system'
 ```
 
 ### Internationalization (i18n)
@@ -132,6 +132,7 @@ For now, Typography supports below languages:
 - `zh-cn`
 - `zh-tw`
 - `ja-jp`
+- `it-it`
 
 You can see all supported languages in [src/i18n.ts](src/i18n.ts), and add more if you need.
 

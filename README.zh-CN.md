@@ -112,7 +112,7 @@ navs: [
 「活版印字」主题支持深色模式。您可以在配置文件中更改它：
 
 ```ts
-themeStyle: 'dart' // 'light' | 'dark'
+themeStyle: 'dart' // 'light' | 'dark' | 'system'
 ```
 
 ### 国际化 (i18n)
@@ -129,6 +129,7 @@ locale: 'zh-cn'
 - `zh-cn`
 - `zh-tw`
 - `ja-jp`
+- `it-it`
 
 您可以在[src/i18n.ts](src/i18n.ts)中查看所有支持的语言，并根据需要添加更多。
 
